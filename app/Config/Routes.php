@@ -32,6 +32,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/animales', 'RegistroControlador::index');
+$routes->post('/animales/registro', 'RegistroControlador::registrar');
+$routes->get('/animales/listado', 'RegistroControlador::buscar');
+$routes->get('/animales/eliminar/(:any)', 'RegistroControlador::eliminar/$1');
 
 /**
  * --------------------------------------------------------------------
