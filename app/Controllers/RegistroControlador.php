@@ -79,16 +79,52 @@ class RegistroControlador extends BaseController
 
 		//2. Ejecutar la funcion del modelo identificando el  registro a eliminar
 
-	try {
+		try {
 
 		$modeloAnimales->where('id',$id)->delete();
 		echo("Usuario Eliminado con éxito");
 
-	} catch (\Exception $error) {
+		} catch (\Exception $error) {
 
 		die($error->getMessage());
 		
-	};
+		};
+	}
+
+	public function editar($id)
+	{
+		//1. Recibir los datos desde la vista
+		$nombre=$this->request->getPost("nombreEditar");
+		$edad=$this->request->getPost("edadEditar");
+		$tipoanimal=$this->request->getPost("tipoanimalEditar");
+		$descripcion=$this->request->getPost("descripcionEditar");
+		$comida=$this->request->getPost("comidaEditar");
+
+		//2. Organizar los datos que llegan de las vistas en un arreglo asociativo (las claves deben ser iguales a los campos o atributos de la tabla en BD)
+
+		$datosEnvio=array(
+		"nombre"=>$nombre,
+		"edad"=>$edad,
+		"tipoanimal"=>$tipoanimal,
+		"descripcion"=>$descripcion,
+		"comida"=>$comida,
+		);
+
+		//3. Crear  un objeto del MODELO para poder realizar la transacción en BD
+
+		$modeloAnimales = new Modeloanimales();
+
+		//4. Ejecutar el método update en el modelo
+
+		try {
+			
+			$modeloAnimales->update($id,$datosEnvio);
+			echo("Registro editado con éxito");
+
+		} catch (\Exception $error) {
+			die($error->getMessage());
+		};
+
 	}
 
 
