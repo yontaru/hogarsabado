@@ -32,9 +32,26 @@
 
 <br>
 <br>
+
+<?php if(session('mensaje')):?>
+
+<div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+  <?php echo("<strong>".session('mensaje')."</strong>")?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<?php endif?>
+
+
+
+
 <div class="container">
   <form class="mt-5" method="POST" action="<?php echo(base_url("public/animales/registro")) ?>">
   <br>
+    <h2>REGISTRO DE ANIMALES</h2>
+    <br>
     <div class="form-group">
       <label for="exampleFormControlInput1">Nombre</label>
       <input type="text" class="form-control" id="nombreanimal" placeholder="Nombre del animal" name="nombre">

@@ -41,7 +41,8 @@ class RegistroControlador extends BaseController
 		try {
 
 			$modeloAnimales->insert($datosEnvio);
-			echo("Registro agregado");
+			$mensaje="registro agregado con éxito";
+			return redirect()->to(base_url("public/"))->with('mensaje', $mensaje);
 
 		} catch (\Exception $error) {
 			die($error->getMessage());
@@ -82,7 +83,8 @@ class RegistroControlador extends BaseController
 		try {
 
 		$modeloAnimales->where('id',$id)->delete();
-		echo("Usuario Eliminado con éxito");
+		$mensaje="registro eliminado con éxito";
+		return redirect()->to(base_url("public/animales/listado"))->with('eliminado', $mensaje);
 
 		} catch (\Exception $error) {
 
@@ -119,7 +121,8 @@ class RegistroControlador extends BaseController
 		try {
 			
 			$modeloAnimales->update($id,$datosEnvio);
-			echo("Registro editado con éxito");
+			$mensaje="registro editado con éxito";
+			return redirect()->to(base_url("public/animales/listado"))->with('editado', $mensaje);
 
 		} catch (\Exception $error) {
 			die($error->getMessage());
